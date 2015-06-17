@@ -1,0 +1,36 @@
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+
+                <%= form_for(resource, :as => resource_name, :remote=>true, :format => :json, :url => session_path(resource_name)) do |f| %>
+                    <%= devise_error_messages! %>
+                    <div><br />
+
+                        <%= f.email_field :email, required: true, autofocus: true, placeholder: "Email Id" %></div>
+
+                    <div><br />
+
+                        <%= f.password_field :password, required: true, placeholder: "Password"%></div>
+
+                    <% if devise_mapping.rememberable? -%>
+
+                        <div><br/><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+
+                    <% end -%>
+
+                    <%= f.submit " Sign in ", :class => 'btn btn-large btn-success' %>
+                <% end %>
+
+            </div>
+            <div class="modal-footer">
+                <%= render "devise/shared/links" %>
+            </div>
+        </div>
+    </div>
+</div>

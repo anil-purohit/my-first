@@ -1,15 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
-        <%= link_to "Pick It Now", "#", :id => "logo" %>
+        <%= link_to "Pick It Now", root_url, :id => "logo" %>
         <nav>
             <ul class="nav navbar-nav navbar-inverse navbar-right">
                 <li><%= link_to "Home", '/' %></li>
-                <% if !@user_logged_in %>
-                    <li><%= link_to "SignUp", '#', "remote"=>true, 'data-toggle'=>"modal", 'data-target'=>"#myModal2", "method"=>"get"%></li>
-                    <li><%= link_to "Login", '#', "remote"=>true, 'data-toggle'=>"modal", 'data-target'=>"#myModal", "method"=>"get"%></li>
+                <% if @current_user.blank? %>
+                    <li><%= link_to 'SignUp', '#', data: {toggle: "modal", target: "#signup", :remote=>true}%></li>
+                    <li><%= link_to 'Login', '#', data: {toggle: "modal", target: "#login", :remote=>true}%></li>
                 <%  else %>
-                    <% @current_user %>
-                    <li><%= "welcome" %></li>
+                    <li> <%= link_to "#{@current_user.email.split('@').first}", '' %></li>
                     <li>  <%= link_to "Sign out", destroy_user_session_path %></li>
                 <% end %>
             </ul>
