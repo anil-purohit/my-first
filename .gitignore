@@ -1,0 +1,6 @@
+Gemfile.lock
+tmp/*
+log/*
+.idea/*
+my-first.iml
+db/schema.rb
